@@ -1,0 +1,19 @@
+alias ls='ls -h --color'
+alias ll='ls -alF'
+alias la='ls -A'
+alias l='ls -CF'
+
+# Dotfile section walking
+for dir in `ls $DOTFILE_HOME`
+do
+    if [ -d $dir ]
+    then
+        if [ ! $dir = $DOTFILE_HOME/bash ]
+        then
+            for file in `ls $dir/*.alias`
+            do
+                source $file
+            done
+        fi
+    fi
+done

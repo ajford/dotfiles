@@ -1,0 +1,14 @@
+! Swap F1 and Escape
+!	F1 is 67 by default
+!	Escape is 9 by default
+!	
+! I swap their keysym assignments, therefore swaping them
+! Comment out keycode 9 to make both escapes
+keycode 67 = Escape
+keycode 9 = Escape
+
+! Make Caps Lock a Control
+!keycode 66 = Caps_Lock
+remove Lock = Caps_Lock
+keysym Caps_Lock = Control_L
+add Control = Control_L

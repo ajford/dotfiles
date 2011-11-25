@@ -1,0 +1,41 @@
+#!/bin/bash
+HOME_BAK=${HOME_BAK-'/archive/home_bak'}
+HOME_BAK_DIRS=${HOME_BAK_DIRS-"$HOME/Documents;$HOME/meetings;$HOME/sandbox"}
+RSYNC_FLAGS='-av'
+HOME_ARCHIVE=${HOME_ARCHIVE-'/archive/home_archive'}
+HOME_DATE_FORMAT=${HOME_DATE_FORMAT-"%Y%m%d"}
+
+OLDIFS="$IFS"
+IFS="$IFS;"
+
+
+while getopts "fd" OPTIONS; do
+    case $OPTIONS in
+        f)
+            RSYNC_FLAGS="$RSYNC_FLAGS -u --exclude-from=/home/ajford/bin/homebak_excludes"
+            MODE='FULL'
+            echo "IN FULL MODE"
+            ;;
+        d)
+            DEBUG='True'
+            ;;
+    esac
+done
+
+if [[ $MODE == 'FULL' ]]; then
+    src_dir=$HOME/
+    dest_dir=$HOME_ARCHIVE/
+fi
+if [[ -z $MODE ]]; then
+    src_dir=$HOME_BAK_DIRS
+    date_dir=`date +"$HOME_DATE_FORMAT"`
+    dest_dir=$HOME_BAK/$date_dir
+fi
+if [[ ! -z $DEBUG ]]; then
+    echo "rsync $RSYNC_FLAGS $src_dir $dest_dir"
+    exit 0
+fi
+
+
+rsync $RSYNC_FLAGS $src_dir $dest_dir
+IFS="$OLDIFS" 

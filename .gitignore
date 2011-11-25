@@ -1,0 +1,7 @@
+*~
+*.sw?
+vim/vim.symlink/backup/*
+vim/vim.symlink/view/*
+vim/vim.symlink/.Vimball*
+vim/vim.symlink/.netrwhist
+dotfile_home

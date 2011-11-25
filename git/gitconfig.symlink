@@ -1,0 +1,8 @@
+[user]
+	name = Anthony Ford
+    email = ford.anthonyj@gmail.com
+[core]
+    editor = vim
+    pager = less
+[diff]
+    tool = vimdiff

@@ -1,0 +1,4 @@
+alias wk='workon'
+alias screenflask='screen -c ~/.flaskscreenrc '
+alias py='python -B'
+
