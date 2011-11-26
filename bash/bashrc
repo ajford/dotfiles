@@ -117,7 +117,7 @@ fi
 # Dotfile section walking
 for dir in `ls $DOTFILES_HOME`
 do
-    if [[ -d $DOTFILES_HOME/$dir && ! $dir = "bash" ]]
+    if [[ -d $DOTFILES_HOME/$dir && ! $dir = "bash" && ! $dir = "bin" ]]
     then
         for file in `ls $DOTFILES_HOME/$dir/`
         do
