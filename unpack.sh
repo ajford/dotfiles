@@ -26,7 +26,7 @@ function _get_input {
         read -e input
         if [[ $input = "" ]]
         then
-            input="Backup"
+            input="backup"
         fi
         input=${input:0:1}
         echo
