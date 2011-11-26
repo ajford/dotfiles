@@ -164,7 +164,7 @@ map O1;5Q :set tabstop=2<CR>:set shiftwidth=2<CR>:set softtabstop=2<CR>
 map O1;5S :set tabstop=4<CR>:set shiftwidth=4<CR>:set softtabstop=4<CR>
 
 "Changes the default location of the *~ files.
-set backupdir=~/.vim/backup,.,/tmp
+set backupdir=~/.vim/backup,/tmp,.
 
 "if has("python")
 "
