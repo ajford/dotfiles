@@ -45,7 +45,7 @@ function mksandbox {
         mkvirtualenv $sandbox_name
         echo "Virtualenv $sandbox_name successfully created"
     fi
-    sandbox $sandbox
+    sandbox $sandbox_name
 }
 
 function sandbox {
