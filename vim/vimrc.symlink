@@ -62,7 +62,7 @@ inoremap <C-U> <C-G>u<C-U>
 if &t_Co > 2 || has("gui_running")
   syntax on
   set hlsearch
-  nnoremap <F4> :noh<CR>
+  nnoremap <F4> :noh<CR>
 
 endif
 
@@ -106,8 +106,21 @@ if has("autocmd")
     autocmd FileType python map! <F2>  @='I#j'<CR>
     autocmd FileType python map <F3>  @=':s/\(\s*\)#\(.*\)/\1\2/j'<CR><F4>
 
-	augroup END
+  augroup END
 
+  " Tex Mods
+  augroup TexMods
+	autocmd FileType tex set textwidth=80
+	autocmd FileType tex set autoindent
+
+  augroup END
+
+  augroup RstMods
+	autocmd FileType rst set textwidth=80
+	autocmd FileType rst set autoindent
+	autocmd FileType rst map <F11> yypVr
+
+  augroup END
 
 else
 
@@ -131,29 +144,13 @@ endif
 
 if has("autocmd")
   "Adding Views and Folding
-  au BufWinLeave * mkview
-  au BufWinEnter * silent loadview
+  au BufWinLeave * silent! mkview
+  au BufWinEnter * silent! loadview
 endif
 
 "Fold Column
 set foldcolumn=0
-"let foldc=0
-
-"function ToggleFold(foldc)
-"  if a:foldc==0
-"    set foldcolumn=5
-"    map <F12> :set foldcolumn=0
-"    let a:foldc=1
-"  else
-"    set foldcolumn=0
-"    map <F12> :set foldcolumn=5
-"    let a:foldc=0
-"  endif
-"endfunction
-
-"map <F12> :call ToggleFold(foldc)<CR>
 map <F12> :set foldcolumn=
-"map <F11> :set foldcolumn=0
 
 """"""""""
 " MyMaps "
@@ -186,8 +183,43 @@ set showmode
 call pathogen#infect()
 
 "Let w!! sudo save
-cmap w!! w !sudo tee % >/dev/null
+"cmap w!! w !sudo tee % >/dev/null
 
 colorscheme shale
 
 let mapleader = ","
+
+" Fast editing of the .vimrc
+"map <leader>e :e! ~/.vimrc<cr>
+command Vimrc e! ~/.vimrc
+
+" When vimrc is edited, reload it
+autocmd! bufwritepost vimrc.symlink source ~/.vimrc
+
+"set laststatus=2
+set statusline=%f%m%r%h\ \ %y\ %v\ %l[%p%%]%{SyntasticStatuslineFlag()}
+set rulerformat=%50(%=%{SyntasticStatuslineFlag()}%t%R%M\ %y\ c%v\ %-P%)
+set ruler
+
+"Persistent undo
+try
+    set undodir=~/.vim/undodir
+    set undofile
+catch
+endtry
+
+"    Syntastic
+"=================
+let g:syntastic_enable_signs=1
+let g:syntastic_auto_jump=1
+let g:syntastic_stl_format = '[%E{Err: %fe #%e}%B{, }%W{Warn: %fw #%w}]'
+let g:syntastic_mode_map = { 'mode': 'active',
+                           \ 'active_filetypes': ['python', 'php', 'tex'],
+                           \ 'passive_filetypes': [] }
+map <leader>s :SyntasticToggleMode<CR>
+map <silent> <leader>l :lcl<CR>
+map <silent> <leader>e :Errors<CR>
+
+" Makes :W write as well.
+cnoreabbrev W w 
+cnoreabbrev Q q 
