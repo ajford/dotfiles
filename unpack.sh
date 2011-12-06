@@ -22,7 +22,7 @@ function _get_input {
     do
         invalid=false
         echo "File ~/.$file_name exists, what do you want to do?"
-        echo "  [s]kip, [S]kip all, [o]verwrite, [O]verwrite all, [b]ackup, [B]ackup all (default)"
+        echo "  [s]kip, [S]kip all, [o]verwrite, [O]verwrite all, [b]ackup (default), [B]ackup all"
         read -e input
         if [[ $input = "" ]]
         then
