@@ -143,4 +143,12 @@ then
     source $DOTFILES_HOME/bash/final.sh
 fi
 
+# Customizations for the current system.
+# This file isn't created by unpack.sh
+# and isn't tracked by the repo.
+if [ -e $HOME/.bash_custom ]
+then
+	source $HOME/.bash_custom
+fi
+
 shopt -u nullglob
