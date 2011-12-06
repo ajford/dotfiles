@@ -4,5 +4,8 @@
 [core]
     editor = vim
     pager = less
+	excludesfile = /home/ajford/.gitignore
 [diff]
     tool = vimdiff
+[alias]
+	ignore = '!f () { local ignore_file=$( git rev-parse −−show-cdup ).gitignore arg; for arg in $*; do echo $arg >> $ignore_file; done; sort -u -o $ignore_file $ignore_file; }; f'
