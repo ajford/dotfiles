@@ -112,6 +112,7 @@ if has("autocmd")
   augroup TexMods
 	autocmd FileType tex set textwidth=80
 	autocmd FileType tex set autoindent
+	autocmd FileType tex set syntax=tex
 
   augroup END
 
@@ -213,12 +214,13 @@ endtry
 let g:syntastic_enable_signs=1
 let g:syntastic_auto_jump=1
 let g:syntastic_stl_format = '[%E{Err: %fe #%e}%B{, }%W{Warn: %fw #%w}]'
-let g:syntastic_mode_map = { 'mode': 'active',
-                           \ 'active_filetypes': ['python', 'php', 'tex'],
-                           \ 'passive_filetypes': [] }
+let g:syntastic_mode_map = { 'mode': 'passive'}
+"                           \ 'active_filetypes': ['python', 'php', 'tex'],
+"                           \ 'passive_filetypes': [] }
 map <leader>s :SyntasticToggleMode<CR>
 map <silent> <leader>l :lcl<CR>
 map <silent> <leader>e :Errors<CR>
+map <silent> <leader>a :SyntasticCheck<CR>
 
 " Makes :W write as well.
 cnoreabbrev W w 
