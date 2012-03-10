@@ -101,6 +101,7 @@ if has("autocmd")
     "Sets tabs to spaces for Python
     "autocmd FileType python set expandtab|set softtabstop=4
 
+    autocmd FileType python set foldmethod=indent
     autocmd FileType python set tags+=$HOME/.vim/tags/python.ctags
     autocmd FileType python map <F2>  @='I#j'<CR>
     autocmd FileType python map! <F2>  @='I#j'<CR>
