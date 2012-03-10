@@ -12,6 +12,7 @@ function _mksandbox_usage {
 # Sandbox function. If no arg is given, lists all sandboxes
 function mksandbox {
     typeset sandbox_name="${@: -1}"
+    venv=0
     while getopts ":v" opt
     do
         case $opt in
