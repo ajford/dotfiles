@@ -1,5 +1,5 @@
 
-SANDBOX_HOME=${SANDBOX_HOME-$HOME/sandbox}
+SANDBOX_HOME=${SANDBOX_HOME-$HOME/.sandbox}
 
 function _mksandbox_usage {
     echo "mksandbox [-v] sandbox_name"
@@ -39,6 +39,12 @@ function mksandbox {
     fi
 
     mkdir -p $sandbox
+    if [ ! -d "$SANDBOX_HOME/.config" ]
+    then
+        mkdir -p $SANDBOX_HOME/.config
+    fi
+    echo "export SANDBOX_HOME=$SANDBOX_HOME"  >> $SANDBOX_HOME/.config/$sandbox_name.sh
+
     echo "Sandbox $sandbox_name successfully created"
 
     if [ $venv = 1 ]
@@ -62,6 +68,10 @@ function sandbox {
     then
         cd $sandbox
         workon_walk
+        if [ -e "$SANDBOX_HOME/.config/$sandbox_name.sh" ]
+        then
+            source $SANDBOX_HOME/.config/$sandbox_name.sh
+        fi
     else
         echo "Sandbox $sandbox_name does not exist"
         return 1
