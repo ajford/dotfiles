@@ -9,6 +9,14 @@ function _mksandbox_usage {
     echo "      when paired with workon_walk."
 }
 
+function _rmsandbox_usage {
+    echo "rmsandbox sandbox_name"
+    echo "  -d  Destroy, i.e. do not archive project."
+    echo
+    echo "By default, rmsandbox archives the project, along"
+    echo "with it's config file, to \$SANDBOX_HOME/.archive/ "
+}
+
 # Sandbox function. If no arg is given, lists all sandboxes
 function mksandbox {
     typeset sandbox_name="${@: -1}"
@@ -55,6 +63,47 @@ function mksandbox {
     sandbox $sandbox_name
 }
 
+function rmsandbox {
+    typeset sandbox_name="${@: -1}"
+
+    remove=0
+    while getopts ":d" opt
+    do
+        case $opt in
+            d)
+                remove=1
+                ;;
+            \?)
+                echo "Invalid argument: -$OPTARG" >&2
+                ;;
+        esac
+    done
+
+
+    if [ "$sandbox_name" = "" ]
+    then
+        _rmsandbox_usage
+        return 1
+    fi
+
+    sandbox="$SANDBOX_HOME/$sandbox_name"
+    if [ ! -e $SANDBOX_HOME/.archive ]
+    then
+        mkdir $SANDBOX_HOME/.archive
+    fi
+
+    if [ $remove = 0 ]
+    then
+        archive=$SANDBOX_HOME/.archive/$sandbox_name.tar
+        tar -C $SANDBOX_HOME -cvf $archive $sandbox_name
+        tar -C $SANDBOX_HOME/.config -rvf $archive $sandbox_name.sh
+        gzip $archive
+    fi
+
+    rm -r $sandbox
+    rm -r $SANDBOX_HOME/.config/$sandbox_name.sh
+}
+
 function sandbox {
     typeset sandbox_name="$1"
     if [ "$sandbox_name" = "" ]
@@ -86,4 +135,4 @@ _sandbox()
 }
 
 complete -o default -o nospace -F _sandbox sandbox
-#complete -o default -o nospace -F _sandbox rmsandbox
+complete -o default -o nospace -F _sandbox rmsandbox
