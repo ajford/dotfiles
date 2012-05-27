@@ -102,6 +102,7 @@ function rmsandbox {
 
     rm -r $sandbox
     rm -r $SANDBOX_HOME/.config/$sandbox_name.sh
+    rmvirtualenv $sandbox_name
 }
 
 function sandbox {
