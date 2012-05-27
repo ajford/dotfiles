@@ -40,6 +40,7 @@ set history=50		" keep 50 lines of command line history
 set ruler		" show the cursor position all the time
 set showcmd		" display incomplete commands
 set incsearch		" do incremental searching
+set textwidth=80
 set tabstop=4		" sets tabwidth to 4
 set shiftwidth=4	" sets shiftwidth to 4
 set softtabstop=4
@@ -111,17 +112,29 @@ if has("autocmd")
 
   " Tex Mods
   augroup TexMods
-	autocmd FileType tex set textwidth=80
 	autocmd FileType tex set autoindent
 	autocmd FileType tex set syntax=tex
 
   augroup END
 
   augroup RstMods
-	autocmd FileType rst set textwidth=80
 	autocmd FileType rst set autoindent
 	autocmd FileType rst map <F11> yypVr
 
+  augroup END
+
+  augroup html
+	autocmd FileType html set autoindent
+	autocmd FileType html set tabstop=2
+	autocmd FileType html set shiftwidth=2
+	autocmd FileType html set softtabstop=2
+  augroup END
+
+  augroup htmljinja
+	autocmd FileType htmljinja set autoindent
+	autocmd FileType htmljinja set tabstop=2
+	autocmd FileType htmljinja set shiftwidth=2
+	autocmd FileType htmljinja set softtabstop=2
   augroup END
 
 else
@@ -226,3 +239,10 @@ map <silent> <leader>a :SyntasticCheck<CR>
 " Makes :W write as well.
 cnoreabbrev W w 
 cnoreabbrev Q q 
+
+function! Tab2()
+	set tabstop=2
+	set shiftwidth=2
+	set softtabstop=2
+endfunction
+	
