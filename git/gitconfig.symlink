@@ -8,4 +8,8 @@
 [diff]
     tool = vimdiff
 [alias]
-	ignore = '!f () { local ignore_file=$( git rev-parse −−show-cdup ).gitignore arg; for arg in $*; do echo $arg >> $ignore_file; done; sort -u -o $ignore_file $ignore_file; }; f'
+    ignore = "!f () { local ignore_file=$( git rev-parse −−show-cdup ).gitignore arg; for arg in $*; do echo $arg >> $ignore_file; done; sort -u -o $ignore_file $ignore_file; }; f"
+    gignore = "!f () { local ignore_file=$HOME/.gitignore arg; for arg in $*; do echo $arg >> $ignore_file; done; sort -u -o $ignore_file $ignore_file; }; f"
+    hidden = !git ls-files -v | grep "^[[:lower:]]"
+    hide = !git update-index --assume-unchanged 
+    unhide = !git update-index --no-assume-unchanged
