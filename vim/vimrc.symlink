@@ -104,9 +104,9 @@ if has("autocmd")
 
     autocmd FileType python set foldmethod=indent
     autocmd FileType python set tags+=$HOME/.vim/tags/python.ctags
-    autocmd FileType python map <F2>  @='I#j'<CR>
-    autocmd FileType python map! <F2>  @='I#j'<CR>
-    autocmd FileType python map <F3>  @=':s/\(\s*\)#\(.*\)/\1\2/j'<CR><F4>
+    "autocmd FileType python map <F2>  @='I#j'<CR>
+    "autocmd FileType python map! <F2>  @='I#j'<CR>
+    "autocmd FileType python map <F3>  @=':s/\(\s*\)#\(.*\)/\1\2/j'<CR><F4>
 
   augroup END
 
@@ -245,4 +245,10 @@ function! Tab2()
 	set shiftwidth=2
 	set softtabstop=2
 endfunction
-	
+
+nnoremap <silent> <F2> :call NERDComment(0, "norm")<cr>
+inoremap <silent> <F2> :call NERDComment(0, "norm")<cr>
+vnoremap <silent> <F2> :call NERDComment(1, "norm")<cr>
+nnoremap <silent> <F3> :call NERDComment(0, "uncomment")<cr>
+inoremap <silent> <F3> :call NERDComment(0, "uncomment")<cr>
+vnoremap <silent> <F3> :call NERDComment(1, "uncomment")<cr>
