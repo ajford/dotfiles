@@ -135,5 +135,24 @@ _sandbox()
     COMPREPLY=( $(compgen -W "`ls $SANDBOX_HOME`" -- ${cur}) )
 }
 
+function sandbox_config_walk () {
+    # By Anthony Ford <ford.anthonyj AT gmail>
+    # Walks directory tree until:
+    # * a sandbox dir is found which matches a config file in the
+    #   SANDBOX_HOME/.config/ dir
+    # * the root directory is reached (no sandbox dir and matching config is
+    #   found.
+
+    dir=${PWD}
+    while [ -d "$dir" ]; do
+        source $SANDBOX_HOME/.config/${dir##*/}.sh > /dev/null 2>&1
+        if [ $? -eq 0 ]; then
+            break
+        fi
+        dir=${dir%/*}
+    done
+}
+
+
 complete -o default -o nospace -F _sandbox sandbox
 complete -o default -o nospace -F _sandbox rmsandbox
