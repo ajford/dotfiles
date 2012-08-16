@@ -9,6 +9,12 @@
 "  for MS-DOS and Win32:  $VIM\_vimrc
 "	    for OpenVMS:  sys$login:.vimrc
 
+
+"Arduino Filetypes
+autocmd! BufNewFile,BufRead *.pde setlocal ft=arduino
+autocmd! BufNewFile,BufRead *.ino setlocal ft=arduino
+
+
 " When started as "evim", evim.vim will already have done these settings.
 if v:progname =~? "evim"
   finish
