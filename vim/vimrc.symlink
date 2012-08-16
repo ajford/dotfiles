@@ -258,3 +258,5 @@ vnoremap <silent> <F2> :call NERDComment(1, "norm")<cr>
 nnoremap <silent> <F3> :call NERDComment(0, "uncomment")<cr>
 inoremap <silent> <F3> :call NERDComment(0, "uncomment")<cr>
 vnoremap <silent> <F3> :call NERDComment(1, "uncomment")<cr>
+nnoremap <silent> <F11> :setlocal spell! spelllang=en_us<CR>
+inoremap <silent> <F11> :setlocal spell! spelllang=en_us<CR>a
