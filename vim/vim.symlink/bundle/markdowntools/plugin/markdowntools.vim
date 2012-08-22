@@ -22,5 +22,11 @@ if has("autocmd")
     autocmd FileType mkd inoremap <leader>h o20I-o<CR>
     autocmd FileType mkd nnoremap <leader>H 20I-
     autocmd FileType mkd inoremap <leader>H 20I-
+
+    autocmd FileType mkd nnoremap <leader>8 I* 
+    autocmd FileType mkd inoremap <leader>8 I* 
+    autocmd FileType mkd nnoremap <leader>* I* 
+    autocmd FileType mkd inoremap <leader>* I* 
+
     
 end
