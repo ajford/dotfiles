@@ -2,6 +2,7 @@ alias ls='ls -h '
 alias ll='ls -alF'
 alias la='ls -A'
 alias l='ls -CF'
+alias chrome='google-chrome'
 
 # Dotfile section walking
 for dir in `ls $DOTFILES_HOME`
