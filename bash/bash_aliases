@@ -3,6 +3,7 @@ alias ll='ls -alF'
 alias la='ls -A'
 alias l='ls -CF'
 alias chrome='google-chrome'
+alias ds='du --max-depth=1 -h'
 
 # Dotfile section walking
 for dir in `ls $DOTFILES_HOME`
