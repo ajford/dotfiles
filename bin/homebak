@@ -1,7 +1,7 @@
 #!/bin/bash
 HOME_BAK=${HOME_BAK-'/archive/home_bak'}
 HOME_BAK_DIRS=${HOME_BAK_DIRS-"$HOME/Documents;$SANDBOX_HOME"}
-RSYNC_FLAGS='-a'
+RSYNC_FLAGS=${RSYNC_FLAGS-'-a'}
 HOME_ARCHIVE=${HOME_ARCHIVE-'/archive/home_archive'}
 HOME_DATE_FORMAT=${HOME_DATE_FORMAT-"%Y%m%d"}
 HOMEBAK_EXCLUDES=${HOMEBAK_EXCLUDES-"$HOME/.homebak_excludes"}
