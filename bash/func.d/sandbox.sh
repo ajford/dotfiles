@@ -1,5 +1,5 @@
 
-SANDBOX_HOME=${SANDBOX_HOME-$HOME/.sandbox}
+export SANDBOX_HOME=${SANDBOX_HOME-$HOME/.sandbox}
 
 function _mksandbox_usage {
     echo "mksandbox [-v] sandbox_name"
