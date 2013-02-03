@@ -52,6 +52,7 @@ function mksandbox {
         mkdir -p $SANDBOX_HOME/.config
     fi
     echo "export SANDBOX_HOME=$SANDBOX_HOME"  >> $SANDBOX_HOME/.config/$sandbox_name.sh
+    echo "export SANDBOX_NAME=$sandbox_name"  >> $SANDBOX_HOME/.config/$sandbox_name.sh
 
     echo "Sandbox $sandbox_name successfully created"
 
@@ -117,16 +118,24 @@ function sandbox {
     if [ -d $sandbox ]
     then
         cd $sandbox
+        export SANDBOX=$sandbox
+        export SANDBOX_NAME=$sandbox_name
         workon_walk
-        if [ -e "$SANDBOX_HOME/.config/$sandbox_name.sh" ]
-        then
-            source $SANDBOX_HOME/.config/$sandbox_name.sh
-        fi
+        #if [ -e "$SANDBOX_HOME/.config/$sandbox_name.sh" ]
+        #then
+        #    source $SANDBOX_HOME/.config/$sandbox_name.sh
+        #fi
+        sandbox_config_walk
     else
         echo "Sandbox $sandbox_name does not exist"
         return 1
     fi
 }
+
+function sandbox-config {
+    echo "export $1=$2"  >> $SANDBOX_HOME/.config/$SANDBOX_NAME.sh
+    source $SANDBOX_HOME/.config/$SANDBOX_NAME.sh
+} 
 
 # completion set for sandbox (BASH only for now)
 _sandbox()
@@ -146,6 +155,8 @@ function sandbox_config_walk () {
     dir=${PWD}
     while [ -d "$dir" ]; do
         source $SANDBOX_HOME/.config/${dir##*/}.sh > /dev/null 2>&1
+        #grep $SANDBOX_HOME/.config/${dir##*/}.sh | while read line
+        #    do
         if [ $? -eq 0 ]; then
             break
         fi
