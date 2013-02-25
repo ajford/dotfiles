@@ -18,7 +18,8 @@ defscrollback 20480
 defnonblock 5
 
 # Should we make TERM=xterm or TERM=screen ... ?
-term 'screen'
+# Ford: Sorry Ron, going with xterm
+term 'xterm'
 
 # Select screens 10-19 with shift+0-9.
 bind  ) select 10
@@ -80,5 +81,12 @@ termcapinfo xterm*|linux*|rxvt*|Eterm* OP
 #
 termcapinfo xterm|xterms|xs|rxvt ti@:te@
 
+#===========#
+# Additions #
+#===========#
+
 # Attempt to get backspace in screen
 termcapinfo xterm ‘bc@:bs@’
+
+# Altscreen to restore previous screen on vim exit
+altscreen
