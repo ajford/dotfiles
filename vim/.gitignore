@@ -2,5 +2,7 @@ vim.symlink/bundle/*
 vim.symlink/backup/*
 vim.symlink/view/*
 vim.symlink/doc/*
+vim.symlink/spell/*
 vim.symlink/.Vimball*
 vim.symlink/.netrwhist
+
