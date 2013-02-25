@@ -1,33 +1,23 @@
-" An example for a vimrc file.
+" Modified Vimrc. 
+" Based on the Ubuntu vimrc from 2008 by Bram Moolenaar <Bram@vim.org>.
 "
-" Maintainer:	Bram Moolenaar <Bram@vim.org>
-" Last change:	2008 Jul 02
-"
-" To use it, copy it to
-"     for Unix and OS/2:  ~/.vimrc
-"	      for Amiga:  s:.vimrc
-"  for MS-DOS and Win32:  $VIM\_vimrc
-"	    for OpenVMS:  sys$login:.vimrc
 
+" Use Vim settings, rather then Vi settings (much better!).
+" This must be first, because it changes other options as a side effect.
+set nocompatible
 
-"Arduino Filetypes
-autocmd! BufNewFile,BufRead *.pde setlocal ft=arduino
-autocmd! BufNewFile,BufRead *.ino setlocal ft=arduino
+"Adding Pathogen
+call pathogen#infect()
 
+"Vundle stuff
+set rtp+=~/.vim/bundle/vundle/
+call vundle#rc()
 
-" When started as "evim", evim.vim will already have done these settings.
-if v:progname =~? "evim"
-  finish
-endif
 
 " Colors?
 set t_Co=256
 "set t_AB=^[[48;5;%dm
 
-" Use Vim settings, rather then Vi settings (much better!).
-" This must be first, because it changes other options as a side effect.
-set nocompatible
-set nu
 
 " allow backspacing over everything in insert mode
 set backspace=indent,eol,start
@@ -58,11 +48,6 @@ map Q gq
 " CTRL-U in insert mode deletes a lot.  Use CTRL-G u to first break undo,
 " so that you can undo CTRL-U after inserting a line break.
 inoremap <C-U> <C-G>u<C-U>
-
-" In many terminal emulators the mouse works just fine, thus enable it.
-"if has('mouse')
-"  set mouse=a
-"endif
 
 " Switch syntax highlighting on, when the terminal has colors
 " Also switch on highlighting the last used search pattern.
@@ -110,9 +95,9 @@ if has("autocmd")
 
     autocmd FileType python set foldmethod=indent
     autocmd FileType python set tags+=$HOME/.vim/tags/python.ctags
-    "autocmd FileType python map <F2>  @='I#j'<CR>
-    "autocmd FileType python map! <F2>  @='I#j'<CR>
-    "autocmd FileType python map <F3>  @=':s/\(\s*\)#\(.*\)/\1\2/j'<CR><F4>
+    autocmd FileType python map <F2>  @='I#j'<CR>
+    autocmd FileType python map! <F2>  @='I#j'<CR>
+    autocmd FileType python map <F3>  @=':s/\(\s*\)#\(.*\)/\1\2/j'<CR><F4>
 
   augroup END
 
@@ -124,23 +109,29 @@ if has("autocmd")
   augroup END
 
   augroup RstMods
-	autocmd FileType rst set autoindent
-	autocmd FileType rst map <F11> yypVr
-
+    autocmd FileType rst set autoindent
+    autocmd FileType rst map <F10> yypVr
   augroup END
 
   augroup html
-	autocmd FileType html set autoindent
-	autocmd FileType html set tabstop=2
-	autocmd FileType html set shiftwidth=2
-	autocmd FileType html set softtabstop=2
+    autocmd FileType html set autoindent
+    autocmd FileType html set tabstop=2
+    autocmd FileType html set shiftwidth=2
+    autocmd FileType html set softtabstop=2
   augroup END
 
   augroup htmljinja
-	autocmd FileType htmljinja set autoindent
-	autocmd FileType htmljinja set tabstop=2
-	autocmd FileType htmljinja set shiftwidth=2
-	autocmd FileType htmljinja set softtabstop=2
+    autocmd FileType htmljinja set autoindent
+    autocmd FileType htmljinja set tabstop=2
+    autocmd FileType htmljinja set shiftwidth=2
+    autocmd FileType htmljinja set softtabstop=2
+  augroup END
+
+
+  augroup arduino
+    "Arduino Filetypes
+    autocmd! BufNewFile,BufRead *.pde setlocal ft=arduino
+    autocmd! BufNewFile,BufRead *.ino setlocal ft=arduino
   augroup END
 
 else
@@ -149,19 +140,12 @@ else
 
 endif " has("autocmd")
 
-" Convenient command to see the difference between the current buffer and the
-" file it was loaded from, thus the changes you made.
-" Only define it when not defined already.
-if !exists(":DiffOrig")
-  command DiffOrig vert new | set bt=nofile | r # | 0d_ | diffthis
-		  \ | wincmd p | diffthis
-endif
-
 
 "++++++++++++++++++++
 "  Personal Configs
 "++++++++++++++++++++
 
+set nu
 
 if has("autocmd")
   "Adding Views and Folding
@@ -171,56 +155,26 @@ endif
 
 "Fold Column
 set foldcolumn=0
-map <F12> :set foldcolumn=
-
-""""""""""
-" MyMaps "
-""""""""""
-
-map [23;2~ :set syntax=htmljinja<CR>
-map O1;5Q :set tabstop=2<CR>:set shiftwidth=2<CR>:set softtabstop=2<CR>
-map O1;5S :set tabstop=4<CR>:set shiftwidth=4<CR>:set softtabstop=4<CR>
 
 "Changes the default location of the *~ files.
 set backupdir=~/.vim/backup,/tmp,.
 
-"if has("python")
-"
-"python << EOF
-"import os
-"import sys
-"import vim
-"for p in sys.path:
-"    if os.path.isdir(p):
-"        vim.command(r"set path+=%s" % (p.replace(" ", r"\ ")))
-"EOF
-"endif
-
-nnoremap <F5> :set invpaste paste?<CR>
+"Enables paste-mode toggling
 set pastetoggle=<F5>
-set showmode
 
-"Adding Pathogen
-call pathogen#infect()
+" Turns on mode indicator
+set showmode  
 
-"Let w!! sudo save
-"cmap w!! w !sudo tee % >/dev/null
-
-colorscheme shale
-
-let mapleader = ","
-
-" Fast editing of the .vimrc
-"map <leader>e :e! ~/.vimrc<cr>
-command Vimrc e! ~/.vimrc
-
-" When vimrc is edited, reload it
-autocmd! bufwritepost vimrc.symlink source ~/.vimrc
-
-"set laststatus=2
+" status line
+" Some of it stolen from Ron Duplain 
 set statusline=%f%m%r%h\ \ %y\ %v\ %l[%p%%]%{SyntasticStatuslineFlag()}
 set rulerformat=%50(%=%{SyntasticStatuslineFlag()}%t%R%M\ %y\ c%v\ %-P%)
 set ruler
+
+" Set colors to shale, my custom colorscheme
+colorscheme shale
+
+let mapleader = ","
 
 "Persistent undo
 try
@@ -229,35 +183,43 @@ try
 catch
 endtry
 
-"    Syntastic
-"=================
-let g:syntastic_enable_signs=1
-let g:syntastic_auto_jump=1
-let g:syntastic_stl_format = '[%E{Err: %fe #%e}%B{, }%W{Warn: %fw #%w}]'
-let g:syntastic_mode_map = { 'mode': 'passive'}
-"                           \ 'active_filetypes': ['python', 'php', 'tex'],
-"                           \ 'passive_filetypes': [] }
-map <leader>s :SyntasticToggleMode<CR>
-map <silent> <leader>l :lcl<CR>
-map <silent> <leader>e :Errors<CR>
-map <silent> <leader>a :SyntasticCheck<CR>
+" Turn on JS folding
+let javaScript_fold=1
 
-" Makes :W write as well.
-cnoreabbrev W w 
-cnoreabbrev Q q 
-
+" Function to set tabs to 2. Useful for txt/html files
 function! Tab2()
 	set tabstop=2
 	set shiftwidth=2
 	set softtabstop=2
 endfunction
 
-nnoremap <silent> <F2> :call NERDComment(0, "norm")<cr>
-inoremap <silent> <F2> :call NERDComment(0, "norm")<cr>
-vnoremap <silent> <F2> :call NERDComment(1, "norm")<cr>
-nnoremap <silent> <F3> :call NERDComment(0, "uncomment")<cr>
-inoremap <silent> <F3> :call NERDComment(0, "uncomment")<cr>
-vnoremap <silent> <F3> :call NERDComment(1, "uncomment")<cr>
+""""""""""
+" MyMaps "
+""""""""""
+
+
+" Map CTRL+F12 to call Tab2.
+map silent [24;5~ :call Tab2()
+
+" F12 lays out the foldcolumn command, lets you set width
+map <F12> :set foldcolumn=
+
+"nnoremap <F5> :set invpaste paste?<CR>
+
+" Makes :W write as well.
+cnoreabbrev W w 
+" Makes :Q quit as well.
+cnoreabbrev Q q 
+
+" Map F2 to comment in normal, insert, and visual modes
+nnoremap <silent> <F2> :call NERDComment('n', "alignLeft")<cr>
+inoremap <silent> <F2> :call NERDComment('n', "alignLeft")<cr>
+vnoremap <silent> <F2> :call NERDComment('x', "alignLeft")<cr>
+
+" Map F3 to uncomment in normal, insert, and visual modes
+nnoremap <silent> <F3> :call NERDComment('n', "uncomment")<cr>
+inoremap <silent> <F3> :call NERDComment('n', "uncomment")<cr>
+vnoremap <silent> <F3> :call NERDComment('x', "uncomment")<cr>
 nnoremap <silent> <F11> :setlocal spell! spelllang=en_us<CR>
 inoremap <silent> <F11> :setlocal spell! spelllang=en_us<CR>a
 
@@ -283,4 +245,48 @@ function! s:align()
     call search(repeat('[^|]*|',column).'\s\{-\}'.repeat('.',position),'ce',line('.'))
   endif
 endfunction
+
+
+
+"    Syntastic
+"=================
+let g:syntastic_enable_signs=1
+let g:syntastic_auto_jump=1
+let g:syntastic_stl_format = '[%E{Err: %fe #%e}%B{, }%W{Warn: %fw #%w}]'
+let g:syntastic_mode_map = { 'mode': 'passive'}
+"                           \ 'active_filetypes': ['python', 'php', 'tex'],
+"                           \ 'passive_filetypes': [] }
+map <leader>s :SyntasticToggleMode<CR>
+map <silent> <leader>l :lcl<CR>
+map <silent> <leader>e :Errors<CR>
+map <silent> <leader>a :SyntasticCheck<CR>
+
+
+
+"    Vundle
+" ============
+
+" let Vundle manage Vundle
+" required. Do not remove if you use Vundle
+Bundle 'gmarik/vundle'
+
+" My own vim bundles
+Bundle 'ajford/markdowntools'
+Bundle 'ajford/vimkivy'
+
+" Jinja2 support
+Bundle 'Glench/Vim-Jinja2-Syntax'
+
+" Nerdcommenter
+Bundle 'scrooloose/nerdcommenter'
+
+" Tabular
+Bundle 'godlygeek/tabular'
+
+" HTML5
+Bundle 'othree/html5-syntax.vim'
+
+Bundle 'loremipsum'
+Bundle 'RST-Tables'
+
 
