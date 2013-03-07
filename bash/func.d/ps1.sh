@@ -50,10 +50,9 @@ function prompt_right() {
 
 function prompt_left() {
     out="\u@\h:"
-    if [[ x$SANDBOX_NAME != "x" ]]
+    if [[ $(pwd|grep $SANDBOX_HOME/) && "X$SANDBOX_NAME" != "X" ]]
     then
-    #    out="$out{$SANDBOX_NAME}$(pwd|sed "s#$SANDBOX##")/"
-    out="$out$(pwd|sed "s#$SANDBOX#{$SANDBOX_NAME}#")"
+        out="$out$(pwd|sed "s#$SANDBOX#{$SANDBOX_NAME}#")"
     else
         out="$out\w"
     fi
