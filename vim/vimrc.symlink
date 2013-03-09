@@ -95,9 +95,9 @@ if has("autocmd")
 
     autocmd FileType python set foldmethod=indent
     autocmd FileType python set tags+=$HOME/.vim/tags/python.ctags
-    autocmd FileType python map <F2>  @='I#j'<CR>
-    autocmd FileType python map! <F2>  @='I#j'<CR>
-    autocmd FileType python map <F3>  @=':s/\(\s*\)#\(.*\)/\1\2/j'<CR><F4>
+    "autocmd FileType python map <F2>  @='I#j'<CR>
+    "autocmd FileType python map! <F2>  @='I#j'<CR>
+    "autocmd FileType python map <F3>  @=':s/\(\s*\)#\(.*\)/\1\2/j'<CR><F4>
 
   augroup END
 
@@ -193,6 +193,15 @@ function! Tab2()
 	set softtabstop=2
 endfunction
 
+" Vim-git-gutter configurations
+let g:gitgutter_enabled = 0
+highlight clear SignColumn
+
+"Vim-Javascript configs
+let g:html_indent_inctags = "html,body,head,tbody"
+let g:html_indent_script1 = "inc"
+let g:html_indent_style1 = "inc"
+
 """"""""""
 " MyMaps "
 """"""""""
@@ -214,12 +223,12 @@ cnoreabbrev Q q
 " Map F2 to comment in normal, insert, and visual modes
 nnoremap <silent> <F2> :call NERDComment('n', "alignLeft")<cr>
 inoremap <silent> <F2> :call NERDComment('n', "alignLeft")<cr>
-vnoremap <silent> <F2> :call NERDComment('x', "alignLeft")<cr>
+vnoremap <silent> <F2> :call NERDComment('x', "alignLeft")<cr>
 
 " Map F3 to uncomment in normal, insert, and visual modes
 nnoremap <silent> <F3> :call NERDComment('n', "uncomment")<cr>
 inoremap <silent> <F3> :call NERDComment('n', "uncomment")<cr>
-vnoremap <silent> <F3> :call NERDComment('x', "uncomment")<cr>
+vnoremap <silent> <F3> :call NERDComment('x', "uncomment")<cr>
 nnoremap <silent> <F11> :setlocal spell! spelllang=en_us<CR>
 inoremap <silent> <F11> :setlocal spell! spelllang=en_us<CR>a
 
@@ -246,6 +255,10 @@ function! s:align()
   endif
 endfunction
 
+" vim-gitgutter integration 
+nnoremap <silent> <F9> :GitGutterToggle<cr>
+inoremap <silent> <F9> :GitGutterToggle<cr>
+vnoremap <silent> <F9> :GitGutterToggle<cr>
 
 
 ""    Syntastic
@@ -289,4 +302,17 @@ Bundle 'othree/html5-syntax.vim'
 Bundle 'loremipsum'
 Bundle 'RST-Tables'
 
+" Markdown
+Bundle 'plasticboy/vim-markdown'
 
+"Vim Git Gutter
+Bundle 'airblade/vim-gitgutter'
+
+"Vim indention guides
+Bundle 'nathanaelkane/vim-indent-guides'
+
+"Vim Powerline
+"Bundle 'Lokaltog/powerline'
+
+"Vim-Javascript - Better JS support
+Bundle "pangloss/vim-javascript"
