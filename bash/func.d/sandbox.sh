@@ -110,7 +110,7 @@ function sandbox {
     typeset sandbox_name="$1"
     if [ "$sandbox_name" = "" ]
     then
-        find $SANDBOX_HOME -maxdepth 1 -type d | sed 's|$SANDBOX_HOME||'
+         ls $SANDBOX_HOME 
         return 1
     fi
 
