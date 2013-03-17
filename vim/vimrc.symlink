@@ -1,4 +1,4 @@
-" Modified Vimrc. 
+" Modified Vimrc.
 " Based on the Ubuntu vimrc from 2008 by Bram Moolenaar <Bram@vim.org>.
 "
 
@@ -23,22 +23,22 @@ set t_Co=256
 set backspace=indent,eol,start
 
 if has("vms")
-  set nobackup		" do not keep a backup file, use versions instead
+  set nobackup        " do not keep a backup file, use versions instead
 else
-  set backup		" keep a backup file
+  set backup        " keep a backup file
 endif
 
 "
 " Default Vim Settings
 "
 
-set history=50		" keep 50 lines of command line history
-set ruler		" show the cursor position all the time
-set showcmd		" display incomplete commands
-set incsearch		" do incremental searching
+set history=50        " keep 50 lines of command line history
+set ruler        " show the cursor position all the time
+set showcmd        " display incomplete commands
+set incsearch        " do incremental searching
 set textwidth=80
-set tabstop=4		" sets tabwidth to 4
-set shiftwidth=4	" sets shiftwidth to 4
+set tabstop=4        " sets tabwidth to 4
+set shiftwidth=4    " sets shiftwidth to 4
 set softtabstop=4
 set expandtab
 
@@ -103,8 +103,8 @@ if has("autocmd")
 
   " Tex Mods
   augroup TexMods
-	autocmd FileType tex set autoindent
-	autocmd FileType tex set syntax=tex
+    autocmd FileType tex set autoindent
+    autocmd FileType tex set syntax=tex
 
   augroup END
 
@@ -136,7 +136,7 @@ if has("autocmd")
 
 else
 
-  set autoindent		" always set autoindenting on
+  set autoindent        " always set autoindenting on
 
 endif " has("autocmd")
 
@@ -163,10 +163,10 @@ set backupdir=~/.vim/backup,/tmp,.
 set pastetoggle=<F5>
 
 " Turns on mode indicator
-set showmode  
+set showmode
 
 " status line
-" Some of it stolen from Ron Duplain 
+" Some of it stolen from Ron Duplain
 set statusline=%f%m%r%h\ \ %y\ %v\ %l[%p%%]
 set rulerformat=%50(%=%t%R%M\ %y\ c%v\ %-P%)
 set ruler
@@ -188,9 +188,9 @@ let javaScript_fold=1
 
 " Function to set tabs to 2. Useful for txt/html files
 function! Tab2()
-	set tabstop=2
-	set shiftwidth=2
-	set softtabstop=2
+    set tabstop=2
+    set shiftwidth=2
+    set softtabstop=2
 endfunction
 
 " Vim-git-gutter configurations
@@ -201,6 +201,12 @@ highlight clear SignColumn
 let g:html_indent_inctags = "html,body,head,tbody"
 let g:html_indent_script1 = "inc"
 let g:html_indent_style1 = "inc"
+
+
+"config for Vim-Statline
+"hi StatusLine guifg=#000000 guibg=#FFFFFF ctermfg=0 ctermbg=15
+"hi StatusLineNC guifg=#808080 guibg=#000000 ctermfg=8 ctermbg=0
+
 
 """"""""""
 " MyMaps "
@@ -216,9 +222,9 @@ map <F12> :set foldcolumn=
 "nnoremap <F5> :set invpaste paste?<CR>
 
 " Makes :W write as well.
-cnoreabbrev W w 
+cnoreabbrev W w
 " Makes :Q quit as well.
-cnoreabbrev Q q 
+cnoreabbrev Q q
 
 " Map F2 to comment in normal, insert, and visual modes
 nnoremap <silent> <F2> :call NERDComment('n', "alignLeft")<cr>
@@ -243,7 +249,7 @@ if exists(":Tabularize")
 endif
 
 inoremap <silent> <Bar>   <Bar><Esc>:call <SID>align()<CR>a
- 
+
 function! s:align()
   let p = '^\s*|\s.*\s|\s*$'
   if exists(':Tabularize') && getline('.') =~# '^\s*|' && (getline(line('.')-1) =~# p || getline(line('.')+1) =~# p)
@@ -255,7 +261,7 @@ function! s:align()
   endif
 endfunction
 
-" vim-gitgutter integration 
+" vim-gitgutter integration
 nnoremap <silent> <F9> :GitGutterToggle<cr>
 inoremap <silent> <F9> :GitGutterToggle<cr>
 vnoremap <silent> <F9> :GitGutterToggle<cr>
