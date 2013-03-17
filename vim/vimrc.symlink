@@ -311,8 +311,5 @@ Bundle 'airblade/vim-gitgutter'
 "Vim indention guides
 Bundle 'nathanaelkane/vim-indent-guides'
 
-"Vim Powerline
-"Bundle 'Lokaltog/powerline'
-
 "Vim-Javascript - Better JS support
 Bundle "pangloss/vim-javascript"
