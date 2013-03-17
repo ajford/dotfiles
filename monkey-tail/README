@@ -1,0 +1,94 @@
+-------------------------------------------------------------------------------
+README for @, also known as monkey-tail
+-------------------------------------------------------------------------------
+
+What?
+-----
+
+@ is a swiss army knife for the *Nix user, and is self-contained and portable.
+
+
+Why?
+----
+
+Well, I feel that it's nice to have a collection of simple commands in a
+separate utility, rather than "polluting" the shell namespace.
+
+You can hang @ on your belt, along with your shell, editor and your C compiler.
+
+
+How?
+----
+
+Copy @ into your usual directory for scripts, etc
+
+Then, simply run:
+
+	@ list-commands
+
+For example, to show disk usage of the current directory:
+
+ 	@ disk-usage
+
+Or, find the disk hogs in your downloads directory:
+
+	@ disk-hogs ~/Downloads
+
+
+Externals
+---------
+
+@ can merge pieces of code into itself, to provide extra commands, etc.
+Additionally, "externals" can then be updated from their source.
+
+For example:
+
+	@ external-add https://github.com/lmartinking/monkey-tail/raw/master/externals/hello-world
+
+Will import the "hello-world" external, and all commands contained within will
+be available. For instance:
+
+	@ hello-world
+
+To remove "hello-world", simply use:
+
+	@ external-remove hello-world
+
+If you have modified an external which is embedded into @, you can extract
+the code using:
+
+	@ external-code <external-name>
+
+You can append code to an external using:
+
+	@ external-append 
+
+
+Creating Your Own External
+--------------------------
+
+An external is simply a kind of bash script with "# @" on the first line
+
+Each command in @ is a bash function, prefixed with _ (underscore). For example:
+
+	# @
+	_my-command () {
+	 echo "Hello there!"
+	}
+
+Once merged into @ (using external-add <file>), can be accessed by:
+
+	@ my-command
+
+@ provides a few built in functions, and eventually there will be more.
+Please do take a look at the source code!
+
+For more examples of externals, take a look at:
+
+	< http://github.com/lmartinking/monkey-tail/tree/master/externals >
+
+
+By Who?
+-------
+
+@ is written by Lucas Martin-King and licenced under the GPLv2
