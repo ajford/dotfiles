@@ -19,7 +19,10 @@ function get_venv() {
     compensate=0
     if [[ $VIRTUAL_ENV != "" ]]
     then
+        # Right alignment compensation factor. Color requires 7 chars, clearing
+        # color requires 4 chars. Total of 11 chars.
         compensate=11
+
         venv="$IGreen(${VIRTUAL_ENV##*/})$Color_Off"
     else
         venv=""
@@ -47,6 +50,9 @@ function git_stuff() {
             branch="$IRed[${_branch}${dirty}]"
         fi
         branch="$branch$Color_Off"
+
+        # Right alignment compensation factor. Color requires 7 chars, clearing
+        # color requires 4 chars. Total of 11 chars.
         compensate=11
     fi
     echo -e $branch
