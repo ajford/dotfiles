@@ -6,6 +6,9 @@
 " This must be first, because it changes other options as a side effect.
 set nocompatible
 
+" Runtime?!
+set runtimepath=~/.vim,$VIM/vimfiles,$VIMRUNTIME
+
 "Adding Pathogen
 call pathogen#infect()
 
@@ -172,7 +175,10 @@ set rulerformat=%50(%=%t%R%M\ %y\ c%v\ %-P%)
 set ruler
 
 " Set colors to shale, my custom colorscheme
-colorscheme shale
+"colorscheme shale
+"
+" Switching to torte for a spell
+colorscheme torte2
 
 let mapleader = ","
 
@@ -207,6 +213,16 @@ let g:html_indent_style1 = "inc"
 "hi StatusLine guifg=#000000 guibg=#FFFFFF ctermfg=0 ctermbg=15
 "hi StatusLineNC guifg=#808080 guibg=#000000 ctermfg=8 ctermbg=0
 
+let g:indent_guides_start_level = 2
+let g:indent_guides_guide_size = 2
+
+set laststatus=2
+
+" Closes Autocomplete after you exit insertion mode.
+" Is less annoying than without it, but may still be too much.
+let g:ycm_autoclose_preview_window_after_insertion = 1
+" Switch to this if Preview is still too annoying.
+"let g:ycm_autoclose_preview_window_after_completion = 0
 
 """"""""""
 " MyMaps "
@@ -266,6 +282,19 @@ nnoremap <silent> <F9> :GitGutterToggle<cr>
 inoremap <silent> <F9> :GitGutterToggle<cr>
 vnoremap <silent> <F9> :GitGutterToggle<cr>
 
+"""""""""""""""""""""
+" Colorscheme Tools "
+"""""""""""""""""""""
+
+" Show syntax highlighting groups for word under cursor
+nmap <C-S-P> :call <SID>SynStack()<CR>
+function! <SID>SynStack()
+  if !exists("*synstack")
+    return
+  endif
+  echo map(synstack(line('.'), col('.')), 'synIDattr(v:val, "name")')
+endfunc
+
 
 ""    Syntastic
 ""=================
@@ -318,4 +347,18 @@ Bundle 'airblade/vim-gitgutter'
 Bundle 'nathanaelkane/vim-indent-guides'
 
 "Vim-Javascript - Better JS support
-Bundle "pangloss/vim-javascript"
+Bundle 'pangloss/vim-javascript'
+
+"Vim Instant Markdown
+" WARNING -- External Dependencies
+" SEE https://github.com/suan/vim-instant-markdown
+"Bundle 'suan/vim-instant-markdown'
+
+"Vim-JSON
+Bundle 'elzr/vim-json'
+
+"Vim-Airline - a vim status bar 
+Bundle 'bling/vim-airline'
+
+"YouCompleteMe - vim auto-completion
+Bundle 'Valloric/YouCompleteMe'
