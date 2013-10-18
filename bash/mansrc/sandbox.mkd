@@ -1,0 +1,31 @@
+% sandbox (1)
+% Anthony Ford
+% 2013/07/02
+
+# Name
+
+sandbox - a project management tool
+
+# SYNOPSIS
+
+sandbox [*project*]
+
+# Description
+
+sandbox is a project management tool based loosely on virtualenvwrapper. It puts
+all your project directories together in one place and provides a convenient way
+to jump straight into them from anywhere on the command line.
+
+The sandbox command itself serves as the jump command, while _mksandbox_(1) and
+_rmsandbox_(1) are sumplemental commands that allow you to create and destroy
+sandboxes. _sandbox-config_(1) allows you to store environment variables
+outside your project that autoload when entering the sandbox. 
+
+If *project* isn't provided, sandbox will return a list of available sandboxes.
+If the provided *project* does not exist, sandbox will return an error code of
+1. 
+
+
+# SEE ALSO
+
+`mksandbox` (1), `rmsandbox` (1), `sandbox-config` (1)

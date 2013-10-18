@@ -151,4 +151,11 @@ then
 	source $HOME/.bash_custom
 fi
 
+# Include DOTFILES manpages.
+# These manpages reference the commands that are included 
+# in the Dotfiles packages. Their src files can be found 
+# in $DOTFILES_HOME/bash/mansrc/, while precompiled man 
+# pages can be found in the adjacent `man` dir.
+export MANPATH=:$DOTFILES_HOME/bash/man
+
 shopt -u nullglob
