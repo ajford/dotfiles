@@ -133,8 +133,17 @@ function sandbox {
 }
 
 function sandbox-config {
-    echo "export $1=$2"  >> $SANDBOX_HOME/.config/$SANDBOX_NAME.sh
-    source $SANDBOX_HOME/.config/$SANDBOX_NAME.sh
+    config=$SANDBOX_HOME/.config/$SANDBOX_NAME.sh
+    if [[ "$#" = "2" ]]
+    then
+        echo "export $1=$2"  >> $config
+        source $config
+    else
+        echo "sandbox-config ENVVAR VALUE"
+        echo "  Adds an export setting to the current sandbox's config"
+        echo ""
+        cat $config | sed 's/export //'
+    fi
 } 
 
 # completion set for sandbox (BASH only for now)
