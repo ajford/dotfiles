@@ -135,6 +135,14 @@ then
     source $DOTFILES_HOME/bash/bash_aliases
 fi
 
+# Customizations for the current system.
+# This file isn't created by unpack.sh
+# and isn't tracked by the repo.
+if [ -e $HOME/.bash_custom ]
+then
+	source $HOME/.bash_custom
+fi
+
 # Sourcing the closing stuff. Everything set in final.sh
 # should be the last in the bashrc file, thus avoiding 
 # overrides.
@@ -143,13 +151,7 @@ then
     source $DOTFILES_HOME/bash/final.sh
 fi
 
-# Customizations for the current system.
-# This file isn't created by unpack.sh
-# and isn't tracked by the repo.
-if [ -e $HOME/.bash_custom ]
-then
-	source $HOME/.bash_custom
-fi
+
 
 # Include DOTFILES manpages.
 # These manpages reference the commands that are included 
