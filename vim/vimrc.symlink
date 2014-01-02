@@ -178,7 +178,8 @@ set ruler
 "colorscheme shale
 "
 " Switching to torte for a spell
-colorscheme torte2
+"colorscheme torte2
+colorscheme tango
 
 let mapleader = ","
 
@@ -223,6 +224,11 @@ set laststatus=2
 let g:ycm_autoclose_preview_window_after_insertion = 1
 " Switch to this if Preview is still too annoying.
 "let g:ycm_autoclose_preview_window_after_completion = 0
+
+"Enable better python syntax from 
+let g:python_version_2 = 1
+
+let g:python_highlight_all = 1
 
 """"""""""
 " MyMaps "
@@ -357,8 +363,17 @@ Bundle 'pangloss/vim-javascript'
 "Vim-JSON
 Bundle 'elzr/vim-json'
 
-"Vim-Airline - a vim status bar 
+"Vim-Airline - a vim status bar
 Bundle 'bling/vim-airline'
 
 "YouCompleteMe - vim auto-completion
-Bundle 'Valloric/YouCompleteMe'
+"Bundle 'Valloric/YouCompleteMe'
+
+"Colors
+Bundle 'guns/xterm-color-table.vim'
+
+"Better Python syntax
+Bundle 'hdima/python-syntax'
+
+"Better C++ syntax
+Bundle 'octol/vim-cpp-enhanced-highlight' 
