@@ -137,6 +137,14 @@ if has("autocmd")
     autocmd! BufNewFile,BufRead *.ino setlocal ft=arduino
   augroup END
 
+  augroup YCM_C
+    "C filetype YouCompleteMe settings
+    autocmd! FileType c set tabstop=2
+    autocmd! FileType c set shiftwidth=2
+    autocmd! FileType c set softtabstop=2
+    autocmd! FileType c let g:ycm_collect_identifiers_from_tags_files=1
+  augroup END
+
 else
 
   set autoindent        " always set autoindenting on
@@ -200,6 +208,30 @@ function! Tab2()
     set softtabstop=2
 endfunction
 
+function! Tab4()
+    set tabstop=4
+    set shiftwidth=4
+    set softtabstop=4
+endfunction
+
+""""""""""""""""
+" Python Stuff "
+""""""""""""""""
+"python with virtualenv support
+py << EOF
+import os
+import sys
+if 'VIRTUAL_ENV' in os.environ:
+  project_base_dir = os.environ['VIRTUAL_ENV']
+  activate_this = os.path.join(project_base_dir, 'bin/activate_this.py')
+  execfile(activate_this, dict(__file__=activate_this))
+EOF
+
+
+"""""""""""
+" CONFIGS "
+"""""""""""
+
 " Vim-git-gutter configurations
 let g:gitgutter_enabled = 0
 highlight clear SignColumn
@@ -219,20 +251,42 @@ let g:indent_guides_guide_size = 2
 
 set laststatus=2
 
+" YouCompleteMe "
+
 " Closes Autocomplete after you exit insertion mode.
 " Is less annoying than without it, but may still be too much.
 let g:ycm_autoclose_preview_window_after_insertion = 1
 " Switch to this if Preview is still too annoying.
 "let g:ycm_autoclose_preview_window_after_completion = 0
+" Set GoTo buffer to show in split window
+let g:ycm_goto_buffer_command = 'horizontal-split'
+
+" YCM Debug Logging
+"let g:ycm_server_log_level = 'debug'
+
 
 "Enable better python syntax from 
 let g:python_version_2 = 1
 
 let g:python_highlight_all = 1
 
-""""""""""
-" MyMaps "
-""""""""""
+" Riv Configs "
+
+" Change Riv blank folding
+let g:riv_fold_blank = 0
+
+let g:riv_section_levels = '=-^"~+'
+
+" Gundo Configs
+"""""""""""""""
+" put undo window on right
+let g:gundo_right = 1
+" Put diff on bottom
+let g:gundo_preview_bottom = 1
+
+"""""""""""
+" My Maps "
+"""""""""""
 
 
 " Map CTRL+F12 to call Tab2.
@@ -241,12 +295,13 @@ map silent [24;5~ :call Tab2()
 " F12 lays out the foldcolumn command, lets you set width
 map <F12> :set foldcolumn=
 
-"nnoremap <F5> :set invpaste paste?<CR>
-
 " Makes :W write as well.
 cnoreabbrev W w
 " Makes :Q quit as well.
 cnoreabbrev Q q
+
+" Map F1 to Gundo
+nnoremap <F6> :GundoToggle<CR>
 
 " Map F2 to comment in normal, insert, and visual modes
 nnoremap <silent> <F2> :call NERDComment('n', "alignLeft")<cr>
@@ -260,6 +315,7 @@ vnoremap <silent> <F3> :call NERDComment('x', "uncomment")<cr>
 nnoremap <silent> <F11> :setlocal spell! spelllang=en_us<CR>
 inoremap <silent> <F11> :setlocal spell! spelllang=en_us<CR>a
 
+nnoremap <leader>jd :YcmCompleter GoTo<CR>
 
 if exists(":Tabularize")
   nmap <leader>m= :Tabularize /=<CR>
@@ -316,7 +372,6 @@ endfunc
 "map <silent> <leader>a :SyntasticCheck<CR>
 
 
-
 "    Vundle
 " ============
 
@@ -325,7 +380,8 @@ endfunc
 Bundle 'gmarik/vundle'
 
 " My own vim bundles
-Bundle 'ajford/markdowntools'
+Bundle 'ajford/markdowntools' 
+Bundle 'ajford/rsttools'
 Bundle 'ajford/vimkivy'
 
 " Jinja2 support
@@ -367,7 +423,7 @@ Bundle 'elzr/vim-json'
 Bundle 'bling/vim-airline'
 
 "YouCompleteMe - vim auto-completion
-"Bundle 'Valloric/YouCompleteMe'
+Bundle 'Valloric/YouCompleteMe'
 
 "Colors
 Bundle 'guns/xterm-color-table.vim'
@@ -377,3 +433,9 @@ Bundle 'hdima/python-syntax'
 
 "Better C++ syntax
 Bundle 'octol/vim-cpp-enhanced-highlight' 
+
+" RST tools (folding, etc.)
+Bundle 'Rykka/riv.vim'
+
+" Graphic Undo Tree
+Bundle 'sjl/gundo.vim'

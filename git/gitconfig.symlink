@@ -13,3 +13,5 @@
     hidden = !git ls-files -v | grep "^[[:lower:]]"
     hide = !git update-index --assume-unchanged 
     unhide = !git update-index --no-assume-unchanged
+[push]
+	default = matching
