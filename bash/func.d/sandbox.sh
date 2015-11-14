@@ -146,6 +146,28 @@ function sandbox-config {
     fi
 } 
 
+function push-sandbox {
+    typeset sandbox_name="$1"
+    if [ "$sandbox_name" = "" ]
+    then
+         ls $SANDBOX_HOME
+        return 1
+    fi
+
+    if [[ "$#" = "2" ]]
+    then
+        typeset server="$2"
+        typeset tmp_dir="$(mktemp -d -t "$sandbox_name.XXXXXX.git")"
+        git clone --bare $SANDBOX_HOME/$sandbox_name $tmp_dir
+        scp -r $tmp_dir $server:~/.repos/$sandbox_name.git
+        rm -rf $tmp_dir
+    else
+        echo "push-sandbox SANDBOX SERVER"
+        echo "  Pushes a bare git repo of SANDBOX to SERVER:~/.repos"
+    fi
+}
+
+
 # completion set for sandbox (BASH only for now)
 _sandbox()
 {
@@ -176,3 +198,4 @@ function sandbox_config_walk () {
 
 complete -o default -o nospace -F _sandbox sandbox
 complete -o default -o nospace -F _sandbox rmsandbox
+complete -o default -o nospace -F _sandbox push-sandbox
