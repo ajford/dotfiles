@@ -108,6 +108,8 @@ if has("autocmd")
   augroup TexMods
     autocmd FileType tex set autoindent
     autocmd FileType tex set syntax=tex
+    autocmd FileType tex nnoremap <silent> <F5> :!pdflatex %<cr>
+    autocmd FileType tex inoremap <silent> <F5> :!pdflatex %<cr>
 
   augroup END
 
@@ -171,7 +173,7 @@ set foldcolumn=0
 set backupdir=~/.vim/backup,/tmp,.
 
 "Enables paste-mode toggling
-set pastetoggle=<F5>
+set pastetoggle=<F7>
 
 " Turns on mode indicator
 set showmode
