@@ -118,6 +118,7 @@ function sandbox {
     if [ -d $sandbox ]
     then
         cd $sandbox
+        echo -ne "\033]0;{$sandbox_name}\007"
         export SANDBOX=$sandbox
         export SANDBOX_NAME=$sandbox_name
         workon_walk
@@ -165,6 +166,55 @@ function push-sandbox {
         echo "push-sandbox SANDBOX SERVER"
         echo "  Pushes a bare git repo of SANDBOX to SERVER:~/.repos"
     fi
+}
+
+function clone-sandbox {
+    typeset git_url="${@: -1}"
+    sandbox_name="$(basename $git_url .git)"
+
+    venv=0
+    while getopts ":v" opt
+    do
+        case $opt in
+            v)
+                venv=1
+                ;;
+            \?)
+                echo "Invalid argument: -$OPTARG" >&2
+                ;;
+        esac
+    done
+
+    if [ "$sandbox_name" = "" ]
+    then
+        _mksandbox_usage
+        return 1
+    fi
+
+    sandbox="$SANDBOX_HOME/$sandbox_name"
+    if [ -d $sandbox ]
+    then
+        echo "Sandbox $sandbox_name already exists!"
+        return 1
+    fi
+
+    #mkdir -p $sandbox
+    git clone $git_url $sandbox
+    if [ ! -d "$SANDBOX_HOME/.config" ]
+    then
+        mkdir -p $SANDBOX_HOME/.config
+    fi
+    echo "export SANDBOX_HOME=$SANDBOX_HOME"  >> $SANDBOX_HOME/.config/$sandbox_name.sh
+    echo "export SANDBOX_NAME=$sandbox_name"  >> $SANDBOX_HOME/.config/$sandbox_name.sh
+
+    echo "Sandbox $sandbox_name successfully created"
+
+    if [ $venv = 1 ]
+    then
+        mkvirtualenv $sandbox_name
+        echo "Virtualenv $sandbox_name successfully created"
+    fi
+    sandbox $sandbox_name
 }
 
 
