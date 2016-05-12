@@ -1,6 +1,6 @@
 [user]
 	name = Anthony Ford
-    email = ford.anthonyj@gmail.com
+    email = Anthony.Ford@twdb.texas.gov
 [core]
     editor = vim
     pager = less
@@ -13,5 +13,6 @@
     hidden = !git ls-files -v | grep "^[[:lower:]]"
     hide = !git update-index --assume-unchanged 
     unhide = !git update-index --no-assume-unchanged
+    unmerged = !git branch -a --no-merged
 [push]
 	default = matching

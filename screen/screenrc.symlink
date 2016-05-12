@@ -90,3 +90,8 @@ termcapinfo xterm ‘bc@:bs@’
 
 # Altscreen to restore previous screen on vim exit
 altscreen
+
+# Titlebar manipulations. Taken from
+# http://tldp.org/HOWTO/Bash-Prompt-HOWTO/x395.html
+termcapinfo xterm|*rxvt* 'hs:ts=\E]2;:fs=\007:ds=\E]2;screen\007'
+
