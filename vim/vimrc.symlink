@@ -39,7 +39,7 @@ set history=50        " keep 50 lines of command line history
 set ruler        " show the cursor position all the time
 set showcmd        " display incomplete commands
 set incsearch        " do incremental searching
-set textwidth=80
+set textwidth=100
 set tabstop=4        " sets tabwidth to 4
 set shiftwidth=4    " sets shiftwidth to 4
 set softtabstop=4
@@ -57,7 +57,7 @@ inoremap <C-U> <C-G>u<C-U>
 if &t_Co > 2 || has("gui_running")
   syntax on
   set hlsearch
-  nnoremap <F4> :noh<CR>
+  nnoremap <silent> <F4> <Esc><Esc>:noh<CR>:pc!<CR>
 
 endif
 
@@ -441,3 +441,6 @@ Bundle 'Rykka/riv.vim'
 
 " Graphic Undo Tree
 Bundle 'sjl/gundo.vim'
+
+" Ansible Syntax Highlighting - Ansible-Vim
+Bundle 'pearofducks/ansible-vim'
