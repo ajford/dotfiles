@@ -12,10 +12,89 @@ set runtimepath=~/.vim,$VIM/vimfiles,$VIMRUNTIME
 "Adding Pathogen
 call pathogen#infect()
 
-"Vundle stuff
-set rtp+=~/.vim/bundle/vundle/
-call vundle#rc()
 
+"    Vundle
+" ============
+filetype off                  " required for Vundle
+set rtp+=~/.vim/bundle/Vundle.vim/
+call vundle#begin()
+" let Vundle manage Vundle
+" required. Do not remove if you use Vundle
+Plugin 'VundleVim/Vundle.vim'
+
+
+" My own vim bundles
+Plugin 'ajford/markdowntools' 
+Plugin 'ajford/rsttools'
+Plugin 'ajford/vimkivy'
+
+" Jinja2 support
+Plugin 'Glench/Vim-Jinja2-Syntax'
+
+" Nerdcommenter
+Plugin 'scrooloose/nerdcommenter'
+
+" Tabular
+Plugin 'godlygeek/tabular'
+
+" HTML5
+Plugin 'othree/html5-syntax.vim'
+
+Plugin 'loremipsum'
+Plugin 'RST-Tables'
+
+" Markdown
+Plugin 'plasticboy/vim-markdown'
+
+"Vim Git Gutter
+Plugin 'airblade/vim-gitgutter'
+
+"Vim indention guides
+Plugin 'nathanaelkane/vim-indent-guides'
+
+"Vim-Javascript - Better JS support
+Plugin 'pangloss/vim-javascript'
+
+"Vim-JSX - JSX support for ReactJS
+Plugin 'mxw/vim-jsx'
+
+"Vim Instant Markdown
+" WARNING -- External Dependencies
+" SEE https://github.com/suan/vim-instant-markdown
+"Plugin 'suan/vim-instant-markdown'
+
+"Vim-JSON
+Plugin 'elzr/vim-json'
+
+"Vim-Airline - a vim status bar
+Plugin 'bling/vim-airline'
+
+"YouCompleteMe - vim auto-completion
+Plugin 'Valloric/YouCompleteMe'
+
+"Colors
+Plugin 'guns/xterm-color-table.vim'
+
+"Better Python syntax
+Plugin 'hdima/python-syntax'
+
+"Better C++ syntax
+Plugin 'octol/vim-cpp-enhanced-highlight' 
+
+" RST tools (folding, etc.)
+Plugin 'Rykka/riv.vim'
+
+" Graphic Undo Tree
+Plugin 'sjl/gundo.vim'
+
+" Ansible Syntax Highlighting - Ansible-Vim
+Plugin 'pearofducks/ansible-vim'
+
+call vundle#end()            " required by Vundle
+filetype plugin indent on    " required by Vundle
+
+" ==============
+"   End Vundle
 
 " Colors?
 set t_Co=256
@@ -374,76 +453,3 @@ endfunc
 "map <silent> <leader>a :SyntasticCheck<CR>
 
 
-"    Vundle
-" ============
-
-" let Vundle manage Vundle
-" required. Do not remove if you use Vundle
-Bundle 'gmarik/vundle'
-
-" My own vim bundles
-Bundle 'ajford/markdowntools' 
-Bundle 'ajford/rsttools'
-Bundle 'ajford/vimkivy'
-
-" Jinja2 support
-Bundle 'Glench/Vim-Jinja2-Syntax'
-
-" Nerdcommenter
-Bundle 'scrooloose/nerdcommenter'
-
-" Tabular
-Bundle 'godlygeek/tabular'
-
-" HTML5
-Bundle 'othree/html5-syntax.vim'
-
-Bundle 'loremipsum'
-Bundle 'RST-Tables'
-
-" Markdown
-Bundle 'plasticboy/vim-markdown'
-
-"Vim Git Gutter
-Bundle 'airblade/vim-gitgutter'
-
-"Vim indention guides
-Bundle 'nathanaelkane/vim-indent-guides'
-
-"Vim-Javascript - Better JS support
-Bundle 'pangloss/vim-javascript'
-
-"Vim-JSX - JSX support for ReactJS
-Bundle 'mxw/vim-jsx'
-
-"Vim Instant Markdown
-" WARNING -- External Dependencies
-" SEE https://github.com/suan/vim-instant-markdown
-"Bundle 'suan/vim-instant-markdown'
-
-"Vim-JSON
-Bundle 'elzr/vim-json'
-
-"Vim-Airline - a vim status bar
-Bundle 'bling/vim-airline'
-
-"YouCompleteMe - vim auto-completion
-Bundle 'Valloric/YouCompleteMe'
-
-"Colors
-Bundle 'guns/xterm-color-table.vim'
-
-"Better Python syntax
-Bundle 'hdima/python-syntax'
-
-"Better C++ syntax
-Bundle 'octol/vim-cpp-enhanced-highlight' 
-
-" RST tools (folding, etc.)
-Bundle 'Rykka/riv.vim'
-
-" Graphic Undo Tree
-Bundle 'sjl/gundo.vim'
-
-" Ansible Syntax Highlighting - Ansible-Vim
-Bundle 'pearofducks/ansible-vim'
