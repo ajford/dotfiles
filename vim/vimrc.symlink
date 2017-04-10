@@ -413,6 +413,9 @@ Bundle 'nathanaelkane/vim-indent-guides'
 "Vim-Javascript - Better JS support
 Bundle 'pangloss/vim-javascript'
 
+"Vim-JSX - JSX support for ReactJS
+Bundle 'mxw/vim-jsx'
+
 "Vim Instant Markdown
 " WARNING -- External Dependencies
 " SEE https://github.com/suan/vim-instant-markdown
