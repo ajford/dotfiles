@@ -58,6 +58,9 @@ Plugin 'pangloss/vim-javascript'
 "Vim-JSX - JSX support for ReactJS
 Plugin 'mxw/vim-jsx'
 
+"EditorConfig for React
+Plugin 'editorconfig/editorconfig-vim'
+
 "Vim Instant Markdown
 " WARNING -- External Dependencies
 " SEE https://github.com/suan/vim-instant-markdown
@@ -203,6 +206,13 @@ if has("autocmd")
     autocmd FileType html set shiftwidth=2
     autocmd FileType html set softtabstop=2
   augroup END
+
+  augroup JS
+    autocmd FileType javascript set autoindent
+    autocmd FileType javascript set tabstop=2
+    autocmd FileType javascript set shiftwidth=2
+    autocmd FileType javascript set softtabstop=2
+  augroup end
 
   augroup htmljinja
     autocmd FileType htmljinja set autoindent
