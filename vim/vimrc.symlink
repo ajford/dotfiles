@@ -140,7 +140,13 @@ if &t_Co > 2 || has("gui_running")
   syntax on
   set hlsearch
   nnoremap <silent> <F4> <Esc><Esc>:noh<CR>:pc!<CR>
+  highlight Pmenu ctermfg=7 ctermbg=15
 
+endif
+
+" Set Pmenu colors based on if we're a 256color or not
+if &t_Co > 16
+  highlight Pmenu ctermfg=51 ctermbg=241
 endif
 
 " Only do this part when compiled with support for autocommands.
