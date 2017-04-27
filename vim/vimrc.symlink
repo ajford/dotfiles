@@ -140,6 +140,7 @@ if &t_Co > 2 || has("gui_running")
   syntax on
   set hlsearch
   nnoremap <silent> <F4> <Esc><Esc>:noh<CR>:pc!<CR>
+  inoremap <silent> <F4> <Esc><Esc>:noh<CR>:pc!<CR>
   highlight Pmenu ctermfg=7 ctermbg=15
 
 endif
@@ -380,6 +381,9 @@ let g:riv_section_levels = '=-^"~+'
 let g:gundo_right = 1
 " Put diff on bottom
 let g:gundo_preview_bottom = 1
+
+" Airline Configs
+let g:airline_powerline_fonts = 1
 
 """""""""""
 " My Maps "
