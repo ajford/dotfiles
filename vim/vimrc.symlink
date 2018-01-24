@@ -126,6 +126,7 @@ set tabstop=4        " sets tabwidth to 4
 set shiftwidth=4    " sets shiftwidth to 4
 set softtabstop=4
 set expandtab
+set listchars=tab:!·,trail:·,eol:¬
 
 " Don't use Ex mode, use Q for formatting
 map Q gq
@@ -212,7 +213,17 @@ if has("autocmd")
     autocmd FileType html set tabstop=2
     autocmd FileType html set shiftwidth=2
     autocmd FileType html set softtabstop=2
+    autocmd FileType html set foldmethod=indent
   augroup END
+
+  augroup css
+    autocmd FileType css set autoindent
+    autocmd FileType css set tabstop=2
+    autocmd FileType css set shiftwidth=2
+    autocmd FileType css set softtabstop=2
+    autocmd FileType css set foldmethod=indent
+  augroup END
+
 
   augroup JS
     autocmd FileType javascript set autoindent
