@@ -1,1 +1,3 @@
 alias g='git status'
+alias gd='git diff -w'
+alias gdiff='git diff --word-diff'
