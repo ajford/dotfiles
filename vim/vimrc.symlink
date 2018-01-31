@@ -93,6 +93,12 @@ Plugin 'sjl/gundo.vim'
 " Ansible Syntax Highlighting - Ansible-Vim
 Plugin 'pearofducks/ansible-vim'
 
+" Add Surround
+Plugin 'tpope/vim-surround'
+
+" Add repeat support
+Plugin 'tpope/vim-repeat'
+
 call vundle#end()            " required by Vundle
 filetype plugin indent on    " required by Vundle
 
