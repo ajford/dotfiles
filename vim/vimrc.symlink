@@ -85,7 +85,7 @@ Plugin 'hdima/python-syntax'
 Plugin 'octol/vim-cpp-enhanced-highlight' 
 
 " RST tools (folding, etc.)
-Plugin 'Rykka/riv.vim'
+Plugin 'gu-fan/riv.vim'
 
 " Graphic Undo Tree
 Plugin 'sjl/gundo.vim'
