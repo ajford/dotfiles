@@ -382,6 +382,11 @@ let g:ycm_autoclose_preview_window_after_insertion = 1
 " Set GoTo buffer to show in split window
 let g:ycm_goto_buffer_command = 'horizontal-split'
 
+" Set semantic triggers
+let g:ycm_semantic_triggers = {
+    \   'css': [ 're!^\s{4}', 're!:\s+' ],
+    \ }
+
 " YCM Debug Logging
 "let g:ycm_server_log_level = 'debug'
 
