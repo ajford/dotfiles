@@ -91,10 +91,19 @@ function prompt_left() {
 }
 
 function prompt_line_2() {
-    echo -e "\$ "
+    local pline_2="$ "
+    if [ $1 == 0 ]; then
+        pline_2="$IGreen\$ $Color_Off"
+    elif [ $1 == 1 ]; then
+        pline_2="$IRed\$ $Color_Off"
+    else
+        pline_2="$IRed[$1]\$ $Color_Off"
+    fi
+    echo -e "$pline_2"
 }
 
 function generate_prompt() {
+    local EXIT="$?"
     # Right alignment compensation factor
     COMPENSATE=0
     pr=`prompt_right`
@@ -103,7 +112,7 @@ function generate_prompt() {
     COMPENSATE=$((COMPENSATE+PIPESTATUS))
 
     PS1=$(printf "%*s\r%s\n%s" "$(($(tput cols) + ${COMPENSATE}))"\
-        "$pr" "$(prompt_left)" "$(prompt_line_2)")
+        "$pr" "$(prompt_left)" "$(prompt_line_2 $EXIT)")
     
 }
 
