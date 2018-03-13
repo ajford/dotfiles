@@ -92,9 +92,11 @@ function prompt_left() {
 
 function prompt_line_2() {
     local pline_2="$ "
+    local colors=$(tput colors)
+
     if [ $1 == 0 ]; then
         pline_2="$IGreen\$ $Color_Off"
-    elif [ $1 == 1 ]; then
+    elif [ \( $1 == 1 \) -a \( $colors -gt 8 \) ]; then
         pline_2="$IRed\$ $Color_Off"
     else
         pline_2="$IRed[$1]\$ $Color_Off"
