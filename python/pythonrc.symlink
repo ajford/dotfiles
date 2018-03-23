@@ -1,13 +1,19 @@
+#!/usr/bin/env python
+# -*- coding: utf-8 -*-
+
 try:
-	import os
-	import readline
-	import atexit
-	import rlcompleter
-	from pydoc import help
+    import os
+    try:
+        import gnureadline as readline
+    except ImportError:
+        import readline
+    import atexit
+    import rlcompleter
+    from pydoc import help
 except:
-	print "Module readline not available."
+    print "Module readline not available."
 else:
-	readline.parse_and_bind("tab: complete")
-	history_file = os.path.expanduser('~/.python_history')
-	readline.read_history_file(history_file)
-	atexit.register(readline.write_history_file, history_file)
+    readline.parse_and_bind("tab: complete")
+    history_file = os.path.expanduser('~/.python_history')
+    readline.read_history_file(history_file)
+    atexit.register(readline.write_history_file, history_file)
