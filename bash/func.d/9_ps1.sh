@@ -95,11 +95,11 @@ function prompt_line_2() {
     local colors=$(tput colors)
 
     if [ $1 == 0 ]; then
-        pline_2="\[$IGreen\]\$ \[$Color_Off\]"
-    elif [ \( $1 == 1 \) -a \( $colors -gt 8 \) ]; then
-        pline_2="\[$IRed\]\$ \[$Color_Off\]"
+        pline_2="$ "
+    elif [ \( $1 == 1 \) ]; then
+        pline_2="! "
     else
-        pline_2="\[$IRed[$1]\]\$ \[$Color_Off\]"
+        pline_2="[$1]! "
     fi
     echo -e "$pline_2"
 }
