@@ -99,6 +99,9 @@ Plugin 'tpope/vim-surround'
 " Add repeat support
 Plugin 'tpope/vim-repeat'
 
+" Logrotate support
+Plugin 'moon-musick/vim-logrotate'
+
 call vundle#end()            " required by Vundle
 filetype plugin indent on    " required by Vundle
 
@@ -236,6 +239,13 @@ if has("autocmd")
     autocmd FileType javascript set tabstop=2
     autocmd FileType javascript set shiftwidth=2
     autocmd FileType javascript set softtabstop=2
+  augroup end
+
+  augroup yaml
+    autocmd FileType yaml set autoindent
+    autocmd FileType yaml set tabstop=2
+    autocmd FileType yaml set shiftwidth=2
+    autocmd FileType yaml set softtabstop=2
   augroup end
 
   augroup htmljinja
