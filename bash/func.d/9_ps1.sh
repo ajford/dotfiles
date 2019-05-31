@@ -115,7 +115,7 @@ function generate_prompt() {
 
     PS1=$(printf "%*s\r%s\n%s" "$(($(tput cols) + ${COMPENSATE}))"\
         "$pr" "$(prompt_left)" "$(prompt_line_2 $EXIT)")
-    
+    history -a
 }
 
 PROMPT_COMMAND=generate_prompt

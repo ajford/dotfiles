@@ -9,12 +9,18 @@
 # ... or force ignoredups and ignorespace
 HISTCONTROL=ignoredups:ignorespace
 
+# Add timestamp to history
+HISTTIMEFORMAT='%F %T '
+
 # append to the history file, don't overwrite it
 shopt -s histappend
 
+# convert multi-line command into single line.
+shopt -s cmdhist
+
 # for setting history length see HISTSIZE and HISTFILESIZE in bash(1)
-HISTSIZE=1000
-HISTFILESIZE=2000
+HISTSIZE=10000000
+HISTFILESIZE=1000000
 
 # check the window size after each command and, if necessary,
 # update the values of LINES and COLUMNS.
