@@ -9,6 +9,9 @@
 # ... or force ignoredups and ignorespace
 HISTCONTROL=ignoredups:ignorespace
 
+# Ignore common/control builtins
+HISTIGNORE='ls:bg:fg:history'
+
 # Add timestamp to history
 HISTTIMEFORMAT='%F %T '
 
